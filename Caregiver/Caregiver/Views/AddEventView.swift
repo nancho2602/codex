@@ -61,6 +61,7 @@ struct AddEventView: View {
                 }
                 presentationMode.wrappedValue.dismiss()
             }
+            .frame(maxWidth: .infinity)
             if event != nil {
                 Button(role: .destructive) {
                     showDeleteConfirm = true
@@ -94,6 +95,7 @@ struct AddEventView_Previews: PreviewProvider {
             AddEventView()
                 .environmentObject(EventStore())
                 .environmentObject(CategoryStore())
+                .environmentObject(PatientStore())
         }
     }
 }

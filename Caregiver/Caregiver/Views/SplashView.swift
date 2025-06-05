@@ -33,5 +33,6 @@ struct SplashView_Previews: PreviewProvider {
         SplashView()
             .environmentObject(EventStore())
             .environmentObject(CategoryStore())
+            .environmentObject(PatientStore())
     }
 }

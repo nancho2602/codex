@@ -6,6 +6,11 @@ struct ContentView: View {
 
     @State private var eventToDelete: Event?
     @State private var showDeleteAlert = false
+    @State private var expandedDays: Set<Date>
+
+    init() {
+        _expandedDays = State(initialValue: [Calendar.current.startOfDay(for: Date())])
+    }
 
     private var groupedEvents: [(date: Date, events: [Event])] {
         let grouped = Dictionary(grouping: store.events) { event in
@@ -45,7 +50,18 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                 } else {
                     ForEach(groupedEvents, id: \.date) { day, events in
-                        Section(header: Text(day, formatter: dayFormatter)) {
+                        DisclosureGroup(
+                            isExpanded: Binding(
+                                get: { expandedDays.contains(day) },
+                                set: { isExpanded in
+                                    if isExpanded {
+                                        expandedDays.insert(day)
+                                    } else {
+                                        expandedDays.remove(day)
+                                    }
+                                }
+                            )
+                        ) {
                             ForEach(events) { event in
                                 NavigationLink(destination: AddEventView(event: event)) {
                                     HStack(alignment: .top) {
@@ -69,6 +85,8 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                        } label: {
+                            Text(day, formatter: dayFormatter)
                         }
                     }
                 }
@@ -76,7 +94,9 @@ struct ContentView: View {
             .navigationTitle("Daily Events")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-
+                        SettingsView()
+                            .environmentObject(categoryStore)
+            .environmentObject(PatientStore())
                     NavigationLink("Settings") {
                         CategorySettingsView()
                             .environmentObject(store)
