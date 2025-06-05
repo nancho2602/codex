@@ -23,6 +23,7 @@ struct PatientInfoView: View {
             name = patientStore.fullName
             dob = patientStore.dateOfBirth
         }
+
     }
 }
 

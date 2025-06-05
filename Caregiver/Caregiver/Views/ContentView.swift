@@ -5,6 +5,7 @@ struct ContentView: View {
     @EnvironmentObject var categoryStore: CategoryStore
     @EnvironmentObject var patientStore: PatientStore
 
+
     @State private var eventToDelete: Event?
     @State private var showDeleteAlert = false
     @State private var expandedDays: Set<Date>
@@ -77,6 +78,7 @@ struct ContentView: View {
                                         }
                                     }
                                 }
+
                                 .swipeActions {
                                     Button(role: .destructive) {
                                         eventToDelete = event
@@ -107,6 +109,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: AddEventView()) {
                         Text("Add")
+
                     }
                 }
             }
@@ -130,5 +133,6 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(EventStore())
             .environmentObject(CategoryStore())
             .environmentObject(PatientStore())
+
     }
 }
