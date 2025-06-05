@@ -3,9 +3,15 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var store: EventStore
     @EnvironmentObject var categoryStore: CategoryStore
+    @EnvironmentObject var patientStore: PatientStore
 
     @State private var eventToDelete: Event?
     @State private var showDeleteAlert = false
+    @State private var expandedDays: Set<Date>
+
+    init() {
+        _expandedDays = State(initialValue: [Calendar.current.startOfDay(for: Date())])
+    }
 
     private var groupedEvents: [(date: Date, events: [Event])] {
         let grouped = Dictionary(grouping: store.events) { event in
@@ -32,43 +38,75 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(groupedEvents, id: \.date) { day, events in
-                    Section(header: Text(day, formatter: dayFormatter)) {
-                        ForEach(events) { event in
-                            NavigationLink(destination: AddEventView(event: event)) {
-                                HStack(alignment: .top) {
-                                    Image(systemName: event.category.icon)
-                                        .foregroundColor(event.category.color)
-                                    VStack(alignment: .leading) {
-                                        Text("\(event.category.rawValue.capitalized): \(event.name)")
-                                            .font(.headline)
-                                        Text(event.note)
-                                        Text(timeFormatter.string(from: event.date))
-                                            .font(.caption)
+                if store.events.isEmpty {
+                    VStack(alignment: .center) {
+                        Text("No activity yet")
+                            .foregroundColor(.secondary)
+                            .padding(.vertical)
+                        NavigationLink("Add New Event") {
+                            AddEventView()
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .frame(maxWidth: .infinity)
+                } else {
+                    ForEach(groupedEvents, id: \.date) { day, events in
+                        DisclosureGroup(
+                            isExpanded: Binding(
+                                get: { expandedDays.contains(day) },
+                                set: { isExpanded in
+                                    if isExpanded {
+                                        expandedDays.insert(day)
+                                    } else {
+                                        expandedDays.remove(day)
+                                    }
+                                }
+                            )
+                        ) {
+                            ForEach(events) { event in
+                                NavigationLink(destination: AddEventView(event: event)) {
+                                    HStack(alignment: .top) {
+                                        Image(systemName: event.category.icon)
+                                            .foregroundColor(event.category.color)
+                                        VStack(alignment: .leading) {
+                                            Text("\(event.category.rawValue.capitalized): \(event.name)")
+                                                .font(.headline)
+                                            Text(event.note)
+                                            Text(timeFormatter.string(from: event.date))
+                                                .font(.caption)
+                                        }
+                                    }
+                                }
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        eventToDelete = event
+                                        showDeleteAlert = true
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
                                     }
                                 }
                             }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    eventToDelete = event
-                                    showDeleteAlert = true
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
+                        } label: {
+                            Text(day, formatter: dayFormatter)
                         }
                     }
                 }
             }
             .navigationTitle("Daily Events")
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink("Settings") {
-                        CategorySettingsView()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink(
+                        destination: SettingsView()
                             .environmentObject(store)
+                            .environmentObject(categoryStore)
+                            .environmentObject(patientStore)
+                    ) {
+                        Text("Settings")
                     }
-                    NavigationLink("Add") {
-                        AddEventView()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AddEventView()) {
+                        Text("Add")
                     }
                 }
             }
@@ -91,5 +129,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject(EventStore())
             .environmentObject(CategoryStore())
+            .environmentObject(PatientStore())
     }
 }

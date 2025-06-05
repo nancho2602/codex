@@ -41,7 +41,9 @@ struct AddEventView: View {
                     Button("Add") {
                         let trimmed = newOption.trimmingCharacters(in: .whitespaces)
                         guard !trimmed.isEmpty else { return }
-                        categoryStore.add(event: trimmed, to: selectedCategory)
+                        withAnimation {
+                            categoryStore.add(event: trimmed, to: selectedCategory)
+                        }
                         selectedEvent = trimmed
                         newOption = ""
                     }
@@ -59,6 +61,7 @@ struct AddEventView: View {
                 }
                 presentationMode.wrappedValue.dismiss()
             }
+            .frame(maxWidth: .infinity)
             if event != nil {
                 Button(role: .destructive) {
                     showDeleteConfirm = true
@@ -92,6 +95,7 @@ struct AddEventView_Previews: PreviewProvider {
             AddEventView()
                 .environmentObject(EventStore())
                 .environmentObject(CategoryStore())
+                .environmentObject(PatientStore())
         }
     }
 }

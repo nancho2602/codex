@@ -22,6 +22,7 @@ struct EventOptionsView: View {
     @EnvironmentObject var store: EventStore
     var category: EventCategory
     @State private var newOption = ""
+    @State private var optionToDelete: String?
 
     var body: some View {
         Form {
@@ -40,9 +41,7 @@ struct EventOptionsView: View {
                         }
                         .swipeActions {
                             Button(role: .destructive) {
-                                if let idx = options.firstIndex(of: option) {
-                                    categoryStore.remove(atOffsets: IndexSet(integer: idx), from: category)
-                                }
+                                optionToDelete = option
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -56,13 +55,30 @@ struct EventOptionsView: View {
                     Button("Add") {
                         let trimmed = newOption.trimmingCharacters(in: .whitespaces)
                         guard !trimmed.isEmpty else { return }
-                        categoryStore.add(event: trimmed, to: category)
+                        withAnimation {
+                            categoryStore.add(event: trimmed, to: category)
+                        }
                         newOption = ""
                     }
                 }
             }
         }
         .navigationTitle(category.rawValue.capitalized)
+        .alert("Delete Option?", isPresented: Binding<Bool>(
+            get: { optionToDelete != nil },
+            set: { if !$0 { optionToDelete = nil } }
+        )) {
+            Button("Cancel", role: .cancel) {}
+            Button("Delete", role: .destructive) {
+                if let option = optionToDelete,
+                   let idx = categoryStore.events(for: category).firstIndex(of: option) {
+                    categoryStore.remove(atOffsets: IndexSet(integer: idx), from: category)
+                }
+                optionToDelete = nil
+            }
+        } message: {
+            Text("This will remove the option permanently.")
+        }
     }
 }
 
@@ -72,6 +88,7 @@ struct CategorySettingsView_Previews: PreviewProvider {
             CategorySettingsView()
                 .environmentObject(CategoryStore())
                 .environmentObject(EventStore())
+                .environmentObject(PatientStore())
         }
     }
 }
