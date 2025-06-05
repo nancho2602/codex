@@ -12,4 +12,8 @@ class EventStore: ObservableObject {
         guard let index = events.firstIndex(where: { $0.id == event.id }) else { return }
         events[index] = event
     }
+
+    func remove(_ event: Event) {
+        events.removeAll { $0.id == event.id }
+    }
 }

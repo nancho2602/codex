@@ -2,6 +2,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: EventStore
+    @EnvironmentObject var categoryStore: CategoryStore
+
+    @State private var eventToDelete: Event?
+    @State private var showDeleteAlert = false
 
     private var groupedEvents: [(date: Date, events: [Event])] {
         let grouped = Dictionary(grouping: store.events) { event in
@@ -44,16 +48,40 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    eventToDelete = event
+                                    showDeleteAlert = true
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Daily Events")
             .toolbar {
-                NavigationLink("Add") {
-                    AddEventView()
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink("Settings") {
+                        CategorySettingsView()
+                            .environmentObject(store)
+                    }
+                    NavigationLink("Add") {
+                        AddEventView()
+                    }
                 }
             }
+        }
+        .alert("Delete Event?", isPresented: $showDeleteAlert) {
+            Button("Cancel", role: .cancel) {}
+            Button("Delete", role: .destructive) {
+                if let event = eventToDelete {
+                    store.remove(event)
+                }
+            }
+        } message: {
+            Text("This will remove the event permanently.")
         }
     }
 }
@@ -62,5 +90,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(EventStore())
+            .environmentObject(CategoryStore())
     }
 }
