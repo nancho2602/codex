@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: EventStore
+    @EnvironmentObject var categoryStore: CategoryStore
 
     private var groupedEvents: [(date: Date, events: [Event])] {
         let grouped = Dictionary(grouping: store.events) { event in
@@ -50,8 +51,13 @@ struct ContentView: View {
             }
             .navigationTitle("Daily Events")
             .toolbar {
-                NavigationLink("Add") {
-                    AddEventView()
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink("Settings") {
+                        CategorySettingsView()
+                    }
+                    NavigationLink("Add") {
+                        AddEventView()
+                    }
                 }
             }
         }
@@ -62,5 +68,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(EventStore())
+            .environmentObject(CategoryStore())
     }
 }
