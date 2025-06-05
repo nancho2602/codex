@@ -76,6 +76,7 @@ struct ContentView: View {
             .navigationTitle("Daily Events")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
+
                     NavigationLink("Settings") {
                         CategorySettingsView()
                             .environmentObject(store)
