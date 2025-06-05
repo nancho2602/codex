@@ -2,19 +2,21 @@ import SwiftUI
 
 struct AddEventView: View {
     @EnvironmentObject var store: EventStore
+    @EnvironmentObject var categoryStore: CategoryStore
     @Environment(\.presentationMode) var presentationMode
 
     var event: Event?
 
     @State private var selectedCategory: EventCategory
     @State private var selectedEvent: String
+    @State private var newOption: String = ""
     @State private var note: String
     @State private var date: Date
 
     init(event: Event? = nil) {
         self.event = event
         _selectedCategory = State(initialValue: event?.category ?? .food)
-        _selectedEvent = State(initialValue: event?.name ?? EventCategory.food.events.first ?? "")
+        _selectedEvent = State(initialValue: event?.name ?? EventCategory.food.defaultEvents.first ?? "")
         _note = State(initialValue: event?.note ?? "")
         _date = State(initialValue: event?.date ?? Date())
     }
@@ -27,8 +29,18 @@ struct AddEventView: View {
                 }
             }
             Picker("Event", selection: $selectedEvent) {
-                ForEach(selectedCategory.events, id: \.self) { event in
+                ForEach(categoryStore.events(for: selectedCategory), id: \.self) { event in
                     Text(event).tag(event)
+                }
+            }
+            HStack {
+                TextField("New option", text: $newOption)
+                Button("Add") {
+                    let trimmed = newOption.trimmingCharacters(in: .whitespaces)
+                    guard !trimmed.isEmpty else { return }
+                    categoryStore.add(event: trimmed, to: selectedCategory)
+                    selectedEvent = trimmed
+                    newOption = ""
                 }
             }
             TextField("Note", text: $note)
@@ -46,7 +58,7 @@ struct AddEventView: View {
         }
         .navigationTitle(event == nil ? "Add Event" : "Edit Event")
         .onChange(of: selectedCategory) { newValue in
-            selectedEvent = newValue.events.first ?? ""
+            selectedEvent = categoryStore.events(for: newValue).first ?? ""
         }
     }
 }
@@ -56,6 +68,7 @@ struct AddEventView_Previews: PreviewProvider {
         NavigationView {
             AddEventView()
                 .environmentObject(EventStore())
+                .environmentObject(CategoryStore())
         }
     }
 }
