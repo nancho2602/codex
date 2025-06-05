@@ -6,7 +6,8 @@ enum EventCategory: String, CaseIterable, Identifiable, Codable {
 
     var id: String { rawValue }
 
-    var events: [String] {
+    /// Default options shown for each category if no custom ones exist
+    var defaultEvents: [String] {
         switch self {
         case .food:
             return ["Breakfast", "Lunch", "Dinner", "Snack"]
