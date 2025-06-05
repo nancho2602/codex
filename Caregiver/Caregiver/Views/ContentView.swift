@@ -32,28 +32,41 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(groupedEvents, id: \.date) { day, events in
-                    Section(header: Text(day, formatter: dayFormatter)) {
-                        ForEach(events) { event in
-                            NavigationLink(destination: AddEventView(event: event)) {
-                                HStack(alignment: .top) {
-                                    Image(systemName: event.category.icon)
-                                        .foregroundColor(event.category.color)
-                                    VStack(alignment: .leading) {
-                                        Text("\(event.category.rawValue.capitalized): \(event.name)")
-                                            .font(.headline)
-                                        Text(event.note)
-                                        Text(timeFormatter.string(from: event.date))
-                                            .font(.caption)
+                if store.events.isEmpty {
+                    VStack(alignment: .center) {
+                        Text("No activity yet")
+                            .foregroundColor(.secondary)
+                            .padding(.vertical)
+                        NavigationLink("Add New Event") {
+                            AddEventView()
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .frame(maxWidth: .infinity)
+                } else {
+                    ForEach(groupedEvents, id: \.date) { day, events in
+                        Section(header: Text(day, formatter: dayFormatter)) {
+                            ForEach(events) { event in
+                                NavigationLink(destination: AddEventView(event: event)) {
+                                    HStack(alignment: .top) {
+                                        Image(systemName: event.category.icon)
+                                            .foregroundColor(event.category.color)
+                                        VStack(alignment: .leading) {
+                                            Text("\(event.category.rawValue.capitalized): \(event.name)")
+                                                .font(.headline)
+                                            Text(event.note)
+                                            Text(timeFormatter.string(from: event.date))
+                                                .font(.caption)
+                                        }
                                     }
                                 }
-                            }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    eventToDelete = event
-                                    showDeleteAlert = true
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        eventToDelete = event
+                                        showDeleteAlert = true
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
                             }
                         }
@@ -62,11 +75,14 @@ struct ContentView: View {
             }
             .navigationTitle("Daily Events")
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
+
                     NavigationLink("Settings") {
                         CategorySettingsView()
                             .environmentObject(store)
                     }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink("Add") {
                         AddEventView()
                     }

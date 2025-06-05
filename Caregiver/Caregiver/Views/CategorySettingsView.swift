@@ -56,7 +56,9 @@ struct EventOptionsView: View {
                     Button("Add") {
                         let trimmed = newOption.trimmingCharacters(in: .whitespaces)
                         guard !trimmed.isEmpty else { return }
-                        categoryStore.add(event: trimmed, to: category)
+                        withAnimation {
+                            categoryStore.add(event: trimmed, to: category)
+                        }
                         newOption = ""
                     }
                 }
