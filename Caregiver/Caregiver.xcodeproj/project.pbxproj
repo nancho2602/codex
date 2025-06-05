@@ -12,37 +12,37 @@
 			containerPortal = 542FAB0E2DF143AC00A4A119 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 542FAB152DF143AC00A4A119;
-			remoteInfo = CancerTracker;
+			remoteInfo = Caregiver;
 		};
 		542FAB302DF143AD00A4A119 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 542FAB0E2DF143AC00A4A119 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 542FAB152DF143AC00A4A119;
-			remoteInfo = CancerTracker;
+			remoteInfo = Caregiver;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		542FAB162DF143AC00A4A119 /* CancerTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CancerTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		542FAB252DF143AD00A4A119 /* CancerTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CancerTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		542FAB2F2DF143AD00A4A119 /* CancerTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CancerTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		542FAB162DF143AC00A4A119 /* Caregiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caregiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		542FAB252DF143AD00A4A119 /* CaregiverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaregiverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		542FAB2F2DF143AD00A4A119 /* CaregiverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaregiverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		542FAB182DF143AC00A4A119 /* CancerTracker */ = {
+		542FAB182DF143AC00A4A119 /* Caregiver */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CancerTracker;
+			path = Caregiver;
 			sourceTree = "<group>";
 		};
-		542FAB282DF143AD00A4A119 /* CancerTrackerTests */ = {
+		542FAB282DF143AD00A4A119 /* CaregiverTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CancerTrackerTests;
+			path = CaregiverTests;
 			sourceTree = "<group>";
 		};
-		542FAB322DF143AD00A4A119 /* CancerTrackerUITests */ = {
+		542FAB322DF143AD00A4A119 /* CaregiverUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CancerTrackerUITests;
+			path = CaregiverUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		542FAB0D2DF143AC00A4A119 = {
 			isa = PBXGroup;
 			children = (
-				542FAB182DF143AC00A4A119 /* CancerTracker */,
-				542FAB282DF143AD00A4A119 /* CancerTrackerTests */,
-				542FAB322DF143AD00A4A119 /* CancerTrackerUITests */,
+				542FAB182DF143AC00A4A119 /* Caregiver */,
+				542FAB282DF143AD00A4A119 /* CaregiverTests */,
+				542FAB322DF143AD00A4A119 /* CaregiverUITests */,
 				542FAB172DF143AC00A4A119 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		542FAB172DF143AC00A4A119 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				542FAB162DF143AC00A4A119 /* CancerTracker.app */,
-				542FAB252DF143AD00A4A119 /* CancerTrackerTests.xctest */,
-				542FAB2F2DF143AD00A4A119 /* CancerTrackerUITests.xctest */,
+				542FAB162DF143AC00A4A119 /* Caregiver.app */,
+				542FAB252DF143AD00A4A119 /* CaregiverTests.xctest */,
+				542FAB2F2DF143AD00A4A119 /* CaregiverUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		542FAB152DF143AC00A4A119 /* CancerTracker */ = {
+		542FAB152DF143AC00A4A119 /* Caregiver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 542FAB392DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTracker" */;
+			buildConfigurationList = 542FAB392DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "Caregiver" */;
 			buildPhases = (
 				542FAB122DF143AC00A4A119 /* Sources */,
 				542FAB132DF143AC00A4A119 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				542FAB182DF143AC00A4A119 /* CancerTracker */,
+				542FAB182DF143AC00A4A119 /* Caregiver */,
 			);
-			name = CancerTracker;
+			name = Caregiver;
 			packageProductDependencies = (
 			);
-			productName = CancerTracker;
-			productReference = 542FAB162DF143AC00A4A119 /* CancerTracker.app */;
+			productName = Caregiver;
+			productReference = 542FAB162DF143AC00A4A119 /* Caregiver.app */;
 			productType = "com.apple.product-type.application";
 		};
-		542FAB242DF143AD00A4A119 /* CancerTrackerTests */ = {
+		542FAB242DF143AD00A4A119 /* CaregiverTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 542FAB3C2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTrackerTests" */;
+			buildConfigurationList = 542FAB3C2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CaregiverTests" */;
 			buildPhases = (
 				542FAB212DF143AD00A4A119 /* Sources */,
 				542FAB222DF143AD00A4A119 /* Frameworks */,
@@ -131,18 +131,18 @@
 				542FAB272DF143AD00A4A119 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				542FAB282DF143AD00A4A119 /* CancerTrackerTests */,
+				542FAB282DF143AD00A4A119 /* CaregiverTests */,
 			);
-			name = CancerTrackerTests;
+			name = CaregiverTests;
 			packageProductDependencies = (
 			);
-			productName = CancerTrackerTests;
-			productReference = 542FAB252DF143AD00A4A119 /* CancerTrackerTests.xctest */;
+			productName = CaregiverTests;
+			productReference = 542FAB252DF143AD00A4A119 /* CaregiverTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		542FAB2E2DF143AD00A4A119 /* CancerTrackerUITests */ = {
+		542FAB2E2DF143AD00A4A119 /* CaregiverUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 542FAB3F2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTrackerUITests" */;
+			buildConfigurationList = 542FAB3F2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CaregiverUITests" */;
 			buildPhases = (
 				542FAB2B2DF143AD00A4A119 /* Sources */,
 				542FAB2C2DF143AD00A4A119 /* Frameworks */,
@@ -154,13 +154,13 @@
 				542FAB312DF143AD00A4A119 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				542FAB322DF143AD00A4A119 /* CancerTrackerUITests */,
+				542FAB322DF143AD00A4A119 /* CaregiverUITests */,
 			);
-			name = CancerTrackerUITests;
+			name = CaregiverUITests;
 			packageProductDependencies = (
 			);
-			productName = CancerTrackerUITests;
-			productReference = 542FAB2F2DF143AD00A4A119 /* CancerTrackerUITests.xctest */;
+			productName = CaregiverUITests;
+			productReference = 542FAB2F2DF143AD00A4A119 /* CaregiverUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 542FAB112DF143AC00A4A119 /* Build configuration list for PBXProject "CancerTracker" */;
+			buildConfigurationList = 542FAB112DF143AC00A4A119 /* Build configuration list for PBXProject "Caregiver" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				542FAB152DF143AC00A4A119 /* CancerTracker */,
-				542FAB242DF143AD00A4A119 /* CancerTrackerTests */,
-				542FAB2E2DF143AD00A4A119 /* CancerTrackerUITests */,
+				542FAB152DF143AC00A4A119 /* Caregiver */,
+				542FAB242DF143AD00A4A119 /* CaregiverTests */,
+				542FAB2E2DF143AD00A4A119 /* CaregiverUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		542FAB272DF143AD00A4A119 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 542FAB152DF143AC00A4A119 /* CancerTracker */;
+			target = 542FAB152DF143AC00A4A119 /* Caregiver */;
 			targetProxy = 542FAB262DF143AD00A4A119 /* PBXContainerItemProxy */;
 		};
 		542FAB312DF143AD00A4A119 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 542FAB152DF143AC00A4A119 /* CancerTracker */;
+			target = 542FAB152DF143AC00A4A119 /* Caregiver */;
 			targetProxy = 542FAB302DF143AD00A4A119 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -407,7 +407,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.Caregiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -434,7 +434,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.Caregiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -451,12 +451,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.CaregiverTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CancerTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CancerTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caregiver.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Caregiver";
 			};
 			name = Debug;
 		};
@@ -469,12 +469,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.CaregiverTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CancerTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CancerTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caregiver.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Caregiver";
 			};
 			name = Release;
 		};
@@ -485,12 +485,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTrackerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.CaregiverUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CancerTracker;
+				TEST_TARGET_NAME = Caregiver;
 			};
 			name = Debug;
 		};
@@ -501,19 +501,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nancho.CancerTrackerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = nancho.CaregiverUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CancerTracker;
+				TEST_TARGET_NAME = Caregiver;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		542FAB112DF143AC00A4A119 /* Build configuration list for PBXProject "CancerTracker" */ = {
+		542FAB112DF143AC00A4A119 /* Build configuration list for PBXProject "Caregiver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				542FAB372DF143AD00A4A119 /* Debug */,
@@ -522,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		542FAB392DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTracker" */ = {
+		542FAB392DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "Caregiver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				542FAB3A2DF143AD00A4A119 /* Debug */,
@@ -531,7 +531,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		542FAB3C2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTrackerTests" */ = {
+		542FAB3C2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CaregiverTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				542FAB3D2DF143AD00A4A119 /* Debug */,
@@ -540,7 +540,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		542FAB3F2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CancerTrackerUITests" */ = {
+		542FAB3F2DF143AD00A4A119 /* Build configuration list for PBXNativeTarget "CaregiverUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				542FAB402DF143AD00A4A119 /* Debug */,

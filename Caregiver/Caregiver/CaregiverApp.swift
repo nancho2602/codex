@@ -1,13 +1,15 @@
 import SwiftUI
 
 @main
-struct CancerTrackerApp: App {
+struct CaregiverApp: App {
     @StateObject private var store = EventStore()
+    @StateObject private var categoryStore = CategoryStore()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
                 .environmentObject(store)
+                .environmentObject(categoryStore)
         }
     }
 }

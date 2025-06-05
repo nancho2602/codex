@@ -1,13 +1,13 @@
 //
-//  CancerTrackerUITestsLaunchTests.swift
-//  CancerTrackerUITests
+//  CaregiverUITestsLaunchTests.swift
+//  CaregiverUITests
 //
 //  Created by Hernan Alvarez on 6/4/25.
 //
 
 import XCTest
 
-final class CancerTrackerUITestsLaunchTests: XCTestCase {
+final class CaregiverUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
