@@ -3,6 +3,8 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var store: EventStore
     @EnvironmentObject var categoryStore: CategoryStore
+    @EnvironmentObject var patientStore: PatientStore
+
 
     @State private var eventToDelete: Event?
     @State private var showDeleteAlert = false
@@ -95,18 +97,19 @@ struct ContentView: View {
             .navigationTitle("Daily Events")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                        SettingsView()
-                            .environmentObject(categoryStore)
-            .environmentObject(PatientStore())
-
-                    NavigationLink("Settings") {
-                        CategorySettingsView()
+                    NavigationLink(
+                        destination: SettingsView()
                             .environmentObject(store)
+                            .environmentObject(categoryStore)
+                            .environmentObject(patientStore)
+                    ) {
+                        Text("Settings")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add") {
-                        AddEventView()
+                    NavigationLink(destination: AddEventView()) {
+                        Text("Add")
+
                     }
                 }
             }
@@ -129,5 +132,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject(EventStore())
             .environmentObject(CategoryStore())
+            .environmentObject(PatientStore())
+
     }
 }

@@ -2,15 +2,10 @@ import SwiftUI
 
 struct PatientInfoView: View {
     @EnvironmentObject var patientStore: PatientStore
-    @State private var name: String
-    @State private var dob: Date
+    @State private var name: String = ""
+    @State private var dob: Date = Date()
     @Environment(\.presentationMode) var presentationMode
 
-    init() {
-        let store = PatientStore()
-        _name = State(initialValue: store.fullName)
-        _dob = State(initialValue: store.dateOfBirth)
-    }
 
     var body: some View {
         Form {
@@ -24,6 +19,11 @@ struct PatientInfoView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle("Patient Info")
+        .onAppear {
+            name = patientStore.fullName
+            dob = patientStore.dateOfBirth
+        }
+
     }
 }
 
