@@ -76,6 +76,7 @@ struct ContentView: View {
                                         }
                                     }
                                 }
+
                                 .swipeActions {
                                     Button(role: .destructive) {
                                         eventToDelete = event
@@ -97,6 +98,7 @@ struct ContentView: View {
                         SettingsView()
                             .environmentObject(categoryStore)
             .environmentObject(PatientStore())
+
                     NavigationLink("Settings") {
                         CategorySettingsView()
                             .environmentObject(store)
