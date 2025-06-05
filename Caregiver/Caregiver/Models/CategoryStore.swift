@@ -35,20 +35,30 @@ class CategoryStore: ObservableObject {
     }
 
     func events(for category: EventCategory) -> [String] {
-        eventsByCategory[category] ?? []
+        (eventsByCategory[category] ?? []).sorted()
     }
 
     func add(event: String, to category: EventCategory) {
         var list = eventsByCategory[category] ?? []
         list.append(event)
-        eventsByCategory[category] = list
+        eventsByCategory[category] = list.sorted()
         persist()
     }
 
     func remove(atOffsets offsets: IndexSet, from category: EventCategory) {
         var list = eventsByCategory[category] ?? []
         list.remove(atOffsets: offsets)
-        eventsByCategory[category] = list
+        eventsByCategory[category] = list.sorted()
+        persist()
+    }
+
+    func rename(option: String, to newName: String, in category: EventCategory) {
+        guard option != newName else { return }
+        var list = eventsByCategory[category] ?? []
+        if let idx = list.firstIndex(of: option) {
+            list[idx] = newName
+            eventsByCategory[category] = list.sorted()
+        }
         persist()
     }
 }

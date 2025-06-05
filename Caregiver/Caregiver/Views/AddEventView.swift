@@ -10,6 +10,7 @@ struct AddEventView: View {
     @State private var selectedCategory: EventCategory
     @State private var selectedEvent: String
     @State private var newOption: String = ""
+    @State private var showDeleteConfirm = false
     @State private var note: String
     @State private var date: Date
 
@@ -24,23 +25,26 @@ struct AddEventView: View {
     var body: some View {
         Form {
             Picker("Category", selection: $selectedCategory) {
-                ForEach(EventCategory.allCases) { category in
+                ForEach(EventCategory.allCases.sorted(by: { $0.rawValue < $1.rawValue })) { category in
                     Text(category.rawValue.capitalized).tag(category)
                 }
             }
             Picker("Event", selection: $selectedEvent) {
-                ForEach(categoryStore.events(for: selectedCategory), id: \.self) { event in
+                let events = categoryStore.events(for: selectedCategory)
+                ForEach(events + ["Add New"], id: \.self) { event in
                     Text(event).tag(event)
                 }
             }
-            HStack {
-                TextField("New option", text: $newOption)
-                Button("Add") {
-                    let trimmed = newOption.trimmingCharacters(in: .whitespaces)
-                    guard !trimmed.isEmpty else { return }
-                    categoryStore.add(event: trimmed, to: selectedCategory)
-                    selectedEvent = trimmed
-                    newOption = ""
+            if selectedEvent == "Add New" {
+                HStack {
+                    TextField("New option", text: $newOption)
+                    Button("Add") {
+                        let trimmed = newOption.trimmingCharacters(in: .whitespaces)
+                        guard !trimmed.isEmpty else { return }
+                        categoryStore.add(event: trimmed, to: selectedCategory)
+                        selectedEvent = trimmed
+                        newOption = ""
+                    }
                 }
             }
             TextField("Note", text: $note)
@@ -55,10 +59,29 @@ struct AddEventView: View {
                 }
                 presentationMode.wrappedValue.dismiss()
             }
+            if event != nil {
+                Button(role: .destructive) {
+                    showDeleteConfirm = true
+                } label: {
+                    Text("Delete Event")
+                        .frame(maxWidth: .infinity)
+                }
+                .alert("Delete Event?", isPresented: $showDeleteConfirm) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Delete", role: .destructive) {
+                        if let existing = event {
+                            store.remove(existing)
+                        }
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                } message: {
+                    Text("This will remove the event permanently.")
+                }
+            }
         }
         .navigationTitle(event == nil ? "Add Event" : "Edit Event")
         .onChange(of: selectedCategory) { newValue in
-            selectedEvent = categoryStore.events(for: newValue).first ?? ""
+            selectedEvent = categoryStore.events(for: newValue).first ?? "Add New"
         }
     }
 }

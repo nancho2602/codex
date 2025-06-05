@@ -4,6 +4,9 @@ struct ContentView: View {
     @EnvironmentObject var store: EventStore
     @EnvironmentObject var categoryStore: CategoryStore
 
+    @State private var eventToDelete: Event?
+    @State private var showDeleteAlert = false
+
     private var groupedEvents: [(date: Date, events: [Event])] {
         let grouped = Dictionary(grouping: store.events) { event in
             Calendar.current.startOfDay(for: event.date)
@@ -45,6 +48,14 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    eventToDelete = event
+                                    showDeleteAlert = true
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
@@ -54,12 +65,23 @@ struct ContentView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     NavigationLink("Settings") {
                         CategorySettingsView()
+                            .environmentObject(store)
                     }
                     NavigationLink("Add") {
                         AddEventView()
                     }
                 }
             }
+        }
+        .alert("Delete Event?", isPresented: $showDeleteAlert) {
+            Button("Cancel", role: .cancel) {}
+            Button("Delete", role: .destructive) {
+                if let event = eventToDelete {
+                    store.remove(event)
+                }
+            }
+        } message: {
+            Text("This will remove the event permanently.")
         }
     }
 }
