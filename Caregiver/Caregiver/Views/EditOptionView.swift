@@ -22,6 +22,7 @@ struct EditOptionView: View {
                 categoryStore.rename(option: option, to: trimmed, in: category)
                 presentationMode.wrappedValue.dismiss()
             }
+            .frame(maxWidth: .infinity)
         }
         .navigationTitle("Edit Option")
     }
