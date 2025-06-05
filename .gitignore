@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata
+
+# Derived and build directories
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+
+# Misc
+*.moved-aside
+*.xcscmblueprint
+*.xccheckout
